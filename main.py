@@ -21,7 +21,9 @@ def text():
     lista= json.loads(response.text)["Lista para la busqueda"]
     return render_template("text-list.html", lista= lista)
 
-
+@app.route('/merge-sort')
+def merge_sort():
+    return render_template('merge_sort.html')
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():

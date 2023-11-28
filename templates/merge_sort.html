@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title  %}
+merge sort 
+{% endblock %}
+
+
+
+{% block content  %}
+
+<div class="container mt-3 mb-1">
+    <a href="{{ url_for('buscador') }}" class="btn btn-secondary">Buscar texto</a>
+</div>
+
+    <h1 class="mt-2 text-center">Merge Sort</h1>
+
+    <div class="mb-3">
+        <label for="inputLista" class="form-label">Lista de Cadenas</label>
+        <input type="text" class="form-control" id="inputLista" placeholder="Ingrese las cadenas separadas por comas">
+    </div>
+
+    <button type="button" class="btn btn-primary" onclick="ordenar()">Ordenar</button>
+
+    <h2 class="mt-4">Resultado:</h2>
+    <ul id="resultadoLista" class="list-group"></ul>
+
+    <div class="mt-4"></div>
+    <script>
+        function ordenar() {
+            var inputLista = document.getElementById('inputLista').value;
+            
+            fetch('http://127.0.0.1:8000/api/merge-sort', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    lista: inputLista.split(',').map(s => s.trim())
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                var resultadoLista = document.getElementById('resultadoLista');
+                resultadoLista.innerHTML = '';
+                data.organizado.forEach(function(item) {
+                    var li = document.createElement('li');
+                    li.appendChild(document.createTextNode(item));
+                    li.className = 'list-group-item';
+                    resultadoLista.appendChild(li);
+                });
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+
+{% endblock %}
