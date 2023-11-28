@@ -1,0 +1,86 @@
+<!-- pagina.html -->
+{% extends 'base.html' %}
+{% block title  %}
+Analisis datos inputados
+{% endblock %}
+{% block content  %}
+<h1>Estadísticas Descriptivas</h1>
+    <a href="/download" class="btn btn-primary">Descargar archivo con datos imputados</a>
+    <hr>
+
+    <div class="row">
+        <div class="col">
+            <h2>Datos originales</h2>
+            
+            <table class="table table-bordered ">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="table-dark">Variable</th>
+                        <th class="table-dark">Count</th>
+                        <th class="table-dark">Mean</th>
+                        <th class="table-dark">Std</th>    
+                        <th class="table-dark">Min</th>
+                        <th class="table-dark">25%</th>
+                        <th class="table-dark">50%</th>
+                        <th class="table-dark">75%</th>
+                        <th class="table-dark">Max</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for variable, stats in describe_data_original.items() %}
+                        <tr>
+                            <td class="table-secondary">{{ variable }}</td>
+                            <td>{{ stats["count"] |round(2)}}</td>
+                            <td>{{ stats["mean"] |round(2)}}</td>
+                            <td>{{ stats["std"] |round(2)}}</td>
+                            <td>{{ stats["min"] |round(2)}}</td>
+                            <td>{{ stats["25%"] |round(2)}}</td>
+                            <td>{{ stats["50%"] |round(2)}}</td>
+                            <td>{{ stats["75%"] |round(2)}}</td>
+                            <td>{{ stats["max"] |round(2)}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="col">
+            <h2>Datos imputados</h2>
+            
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="table-dark">Variable</th>
+                        <th class="table-dark">Count</th>
+                        <th class="table-dark">Mean</th>
+                        <th class="table-dark">Std</th>
+                        <th class="table-dark">Min</th>
+                        <th class="table-dark">25%</th>
+                        <th class="table-dark">50%</th>
+                        <th class="table-dark">75%</th>
+                        <th class="table-dark">Max</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for variable, stats in describe_data_imputed.items() %}
+                        <tr>
+                            <td class="table-secondary">{{ variable }}</td>
+                            <td>{{ stats["count"] |round(2)}}</td>
+                            <td>{{ stats["mean"] |round(2)}}</td>
+                            <td>{{ stats["std"] |round(2)}}</td>
+                            <td>{{ stats["min"] |round(2)}}</td>
+                            <td>{{ stats["25%"] |round(2)}}</td>
+                            <td>{{ stats["50%"] |round(2)}}</td>
+                            <td>{{ stats["75%"] |round(2)}}</td>
+                            <td>{{ stats["max"] |round(2)}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+{% endblock %}
+
+
+

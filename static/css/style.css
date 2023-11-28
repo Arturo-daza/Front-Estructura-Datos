@@ -1,0 +1,44 @@
+/* estilos.css */
+/* body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: #333;
+} */
+
+.page-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1 0 auto;
+}
+
+
+body {
+    background-color: #343a40 !important;
+    color: #f8f9fa !important;
+}
+
+.form-control {
+    background-color: #495057;
+    color: #f8f9fa;
+}
+
+button {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+button:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+#resultado {
+    color: #f8f9fa;
+}
