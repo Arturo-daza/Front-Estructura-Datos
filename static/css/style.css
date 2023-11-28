@@ -20,8 +20,8 @@ h1 {
 
 
 body {
-    background-color: #343a40 !important;
-    color: #f8f9fa !important;
+    background-color: #e0e7ef !important;
+    color: rgb(24, 29, 33) !important;
 }
 
 .form-control {
@@ -40,5 +40,5 @@ button:hover {
 }
 
 #resultado {
-    color: #f8f9fa;
+    color: rgb(24, 29, 33);
 }

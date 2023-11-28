@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title  %}
+Lista de palabras
+{% endblock %}
+
+
+{% block content  %}
+
+<div class="container mt-3 mb-1">
+    <a href="{{ url_for('buscador') }}" class="btn btn-secondary">Buscar texto</a>
+</div>
+
+<h1 class = "text-center">Lista para la Búsqueda</h1>
+
+<oa class="list-group mt-4">
+    {% for frase in lista %}
+        <li class="list-group-item">{{ frase }}</li>
+    {% endfor %}
+</oa>
+
+{% endblock %}

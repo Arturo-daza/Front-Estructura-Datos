@@ -5,8 +5,9 @@ Buscador
 
 
 {% block content  %}
-    <div class="container mt-3">
+    <div class="container mt-3 d-flex justify-content-between">
       <a href="{{ url_for('upload_file') }}" class="btn btn-secondary">Volver al Inicio</a>
+      <a href="{{ url_for('text') }}"  class="btn btn-primary">Ver lista de palabras</a>
     </div>
     <div class="container">
       <h1 class="mt-5 mb-4 text-center">Buscador de palabra en lista</h1>
@@ -56,7 +57,7 @@ Buscador
 
     <script>
       function buscarPalabra() {
-        let palabra = document.getElementById("palabra").value;
+        let palabra = document.getElementById("palabra").value.toLowerCase();
 
         fetch("http://127.0.0.1:8000/api/indices-invertidos", {
           method: "POST",

@@ -15,6 +15,13 @@ def download_file():
 def buscador():
     return render_template("indices-invertidos.html")
 
+@app.route('/text-list')
+def text():
+    response = requests.get('http://127.0.0.1:8000/api')
+    lista= json.loads(response.text)["Lista para la busqueda"]
+    return render_template("text-list.html", lista= lista)
+
+
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():

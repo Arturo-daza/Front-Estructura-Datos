@@ -4,10 +4,10 @@
 Subir CSV
 {% endblock %}
 {% block content  %}
-    <h1>Subir CSV con datos faltante </h1>
+    <h1>Subir CSV con datos faltantes </h1>
     <form action="/upload" method="post" enctype="multipart/form-data" class="mt-3">
         <div class="form-group mb-4">
-            <label for="file">Seleccionar archivo CSV:</label> <br>
+            <label class= "mb-4" for="file">Seleccionar archivo CSV:</label> <br>
             <input type="file" class="form-control-file" id="file" name="file" accept=".csv" />
         </div>
         <button type="submit" class="btn btn-primary">Subir</button>
