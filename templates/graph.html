@@ -1,0 +1,116 @@
+
+<!-- pagina.html -->
+{% extends 'base.html' %}
+{% block title  %}
+Grafo
+{% endblock %}
+{% block content  %}
+
+<div class="container mt-3 mb-1">
+    <a href="{{ url_for('upload_file') }}" class="btn btn-secondary">Volver al Inicio</a>
+</div>
+
+    <h1 class="mt-2 text-center">Grafos y el camino más corto</h1>
+    <form class="mt-4" method="post" action="{{ url_for('grafo') }}">
+        <div class="form-group">
+            <label for="aristas">Aristas (formato: (0,1), (0,3), ...):</label>
+            <input type="text" class="form-control" name="aristas" required>
+        </div>
+
+        <div class="form-group">
+            <label for="camino">Camino (formato: (0,2)):</label>
+            <input type="text" class="form-control" name="camino" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Consultar Grafo</button>
+    </form>
+
+    {% if grafo %}
+        <h2 class= "text-center">Resultados del Grafo</h2>
+
+        <div id="grafo-container" class="text-center"></div>
+
+        <script>
+            // Extrae el grafo del contexto de Jinja2
+            var grafoData = {{ grafo|tojson|safe }};
+
+            // Configura el contenedor del grafo
+            var width = 500;
+            var height = 300;
+
+            // Configura el lienzo SVG para el grafo
+            var svg = d3.select("#grafo-container")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+            // Crea los nodos
+            var nodes = grafoData.nodes.map(function (d) {
+                return { id: d.id };
+            });
+
+            // Crea los enlaces
+            var links = grafoData.links.map(function (d) {
+                return { source: d.source, target: d.target };
+            });
+
+            // Configura la simulación de fuerza
+            var simulation = d3.forceSimulation()
+                .force("link", d3.forceLink().id(function (d) { return d.id; }))
+                .force("charge", d3.forceManyBody())
+                .force("center", d3.forceCenter(width / 2, height / 2));
+
+            // Agrega los nodos y enlaces al grafo
+            simulation.nodes(nodes);
+            simulation.force("link").links(links);
+
+            // Crea los elementos SVG para los enlaces y nodos
+            var link = svg.selectAll(".link")
+                .data(links)
+                .enter().append("line")
+                .attr("class", "link")
+                .style("stroke", "red");  // Añade el color rojo a las aristas
+
+            var node = svg.selectAll(".node")
+                .data(nodes)
+                .enter().append("g")
+                .attr("class", "node");
+
+            // Añade un círculo para representar cada nodo
+            node.append("circle")
+                .attr("r", 8);
+
+            // Añade una etiqueta de texto para cada nodo
+            node.append("text")
+                .text(function (d) { return d.id; })
+                .attr("dx", 12)
+                .attr("dy", 4);
+
+            // Agrega la simulación de fuerza
+            simulation.on("tick", function () {
+                link
+                    .attr("x1", function (d) { return d.source.x; })
+                    .attr("y1", function (d) { return d.source.y; })
+                    .attr("x2", function (d) { return d.target.x; })
+                    .attr("y2", function (d) { return d.target.y; });
+
+                node
+                    .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
+            });
+        </script>
+    {% endif %}
+
+    {% if grafo %}
+        <h3>Grafo:</h3>
+        <pre>{{ grafo }}</pre>
+
+        <h3>BFS:</h3>
+        <pre>{{ bfs }}</pre>
+
+        <h3>DFS:</h3>
+        <pre>{{ dfs }}</pre>
+    {% endif %}
+
+
+{% endblock %}
+
