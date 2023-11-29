@@ -24,77 +24,12 @@ binary tree
 
 
 {% if data %}
-    <h1>Resultado</h1>
-    <p>Árbol: {{ data.arbol }}</p>
-    <p>Preorden: {{ data.preorden }}</p>
-    <p>Inorder: {{ data.inorder }}</p>
-    <p>Postorden: {{ data.postorden }}</p>
+        <h1>Resultado</h1>
+        <p>Árbol: {{ data.arbol }}</p>
+        <p>Preorden: {{ data.preorden }}</p>
+        <p>Inorder: {{ data.inorder }}</p>
+        <p>Postorden: {{ data.postorden }}</p>
 
-    <div id="arbol-container"></div>
-
-    <script>
-        // Extrae la estructura del árbol del JSON
-        var arbolData = {{ data.arbol | tojson | safe }};
-
-        // Configuración de dimensiones para el contenedor del árbol
-// Extrae la estructura del árbol del JSON
-var arbolData = {"derecha": {"derecha": {"derecha": null, "izquierda": null, "valor": 3}, "izquierda": null, "valor": 2}, "izquierda": null, "valor": 1};
-
-// Configuración de dimensiones para el contenedor del árbol
-var width = 500;
-var height = 300;
-
-// Crear contenedor SVG
-var svg = d3.select("#arbol-container")
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
-// Función para generar el árbol
-var tree = d3.tree().size([width, height - 100]);
-
-// Modificar la estructura de los datos para que D3.js pueda interpretarla correctamente
-function transformData(data) {
-    if (data.derecha || data.izquierda) {
-        data.children = [data.derecha, data.izquierda].filter(function(d) { return d; });
-        delete data.derecha;
-        delete data.izquierda;
-        data.children.forEach(transformData);
-    }
-}
-transformData(arbolData);
-
-var root = d3.hierarchy(arbolData);
-var treeData = tree(root);
-
-// Dibujar enlaces
-var links = svg.selectAll(".link")
-    .data(treeData.links())
-    .enter().append("path")
-    .attr("class", "link")
-    .attr("d", d3.linkHorizontal()
-        .x(function(d) { return d.y; })
-        .y(function(d) { return d.x; }));
-
-// Dibujar nodos
-var nodes = svg.selectAll(".node")
-    .data(treeData.descendants())
-    .enter().append("g")
-    .attr("class", "node")
-    .attr("transform", function(d) {
-        return "translate(" + d.y + "," + d.x + ")";
-    });
-
-nodes.append("circle")
-    .attr("r", 10);
-
-nodes.append("text")
-    .attr("dy", ".35em")
-    .attr("x", function(d) { return d.children ? -13 : 13; })
-    .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
-    .text(function(d) { return d.data.valor; });
-
-    </script>
 {% endif %}
 
 
