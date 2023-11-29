@@ -7,6 +7,11 @@ import json
 app = Flask(__name__)
 
 
+@app.route('/index')
+def index():
+    return render_template("index.html")
+
+
 @app.route('/download')
 def download_file():
     return send_file(os.path.join(os.getcwd(), 'output.csv'), as_attachment=True)
