@@ -8,41 +8,78 @@ Subir CSV
 <div class="container mt-3 mb-1">
     <a href="{{ url_for('index') }}" class="btn btn-secondary">Volver al Inicio</a>
 </div>
+    <h1 class="mb-4 text-center">Tensores</h1>
+    <p>
+        Los tensores son estructuras de datos que se utilizan comúnmente en el ámbito de la informática y el aprendizaje automático (machine learning). En el contexto de estructuras de datos, un tensor es una generalización de conceptos como escalares, vectores y matrices. Puedes pensar en un tensor como un arreglo multidimensional de datos, donde cada elemento está identificado por un conjunto de índices.</p>
+    <h2 class="mb-4 text-center">Autoencoder con Tensores</h2>
+    
+    <p>Los autoencoders son una arquitectura de red neuronal utilizada en aprendizaje automático para aprender representaciones eficientes de datos de entrada. Los tensores son fundamentales en el contexto de autoencoders porque se utilizan para representar y manipular los datos a lo largo del proceso de codificación y decodificación.</p>
 
-<div class="explicacion-tensores mt-5">
-    <h2>Tensores en Estructuras de Datos</h2>
-    <p>
-        En el contexto de estructuras de datos, un tensor es una generalización multidimensional de matrices 
-        que permite representar datos de múltiples dimensiones. En aprendizaje automático y redes neuronales, 
-        los tensores son fundamentales para representar los datos de entrada, los pesos de las capas de una red, 
-        y las salidas esperadas.
-    </p>
-    <h2>Uso de Autoencoder en Imputación de Datos</h2>
-    <h3>1. Por qué se usó este tipo de red</h3>
-    <p>
-        Se utilizó un autoencoder debido a su capacidad para aprender representaciones compactas de los datos 
-        al pasar por una capa de compresión y luego descomprimirlos en la capa de salida. Esto permite al autoencoder 
-        aprender características importantes y realizar una reconstrucción de los datos de entrada.
-    </p>
-    <h3>2. Por qué esta red neuronal es buena para la imputación de datos positivos normalizados</h3>
-    <p>
-        El autoencoder es adecuado para imputar datos positivos normalizados porque utiliza una función de activación 
-        ReLU (Rectified Linear Unit) que suele funcionar bien con valores positivos y se comporta linealmente para 
-        valores positivos, facilitando la reconstrucción de estos datos.
-    </p>
-    <p>
-        Además, al emplear datos normalizados, se asegura que la red se adapte mejor a la escala y distribución de los 
-        datos, lo que contribuye a obtener mejores resultados en la imputación.
-    </p>
+    <p>Un autoencoder consta de dos partes principales: el codificador (encoder) y el decodificador (decoder). La función del codificador es mapear los datos de entrada a una representación de espacio latente, y el decodificador reconstruye los datos originales a partir de esa representación. Durante este proceso, los tensores son esenciales para representar las activaciones de las capas en cada etapa.</p>
+
+    <div class="text-center mb-2">
+        <!-- Cambia "ruta-de-tu-imagen.jpg" con la ruta real de tu imagen -->
+    <img src="{{ url_for('static', filename='assets/img/Autoencoder.png') }}" alt="Descripción de la imagen" width="700" height="300" class ="text-center">
+        
+      </div>
+
+    
+    <p>Para entender mejor cómo los tensores están relacionados con los autoencoders, aquí hay una descripción simplificada del proceso:</p>
+
+    <ol>
+      <li><strong>Entrada:</strong> Los datos de entrada (como imágenes, secuencias, etc.) se representan inicialmente como un tensor.</li>
+      <li><strong>Codificación:</strong> El codificador toma este tensor de entrada y realiza transformaciones mediante capas de la red neuronal, reduciendo la dimensión del tensor y creando una representación comprimida en el espacio latente. Estas representaciones intermedias también son tensores.</li>
+      <li><strong>Espacio Latente:</strong> La representación comprimida en el espacio latente es un tensor que captura características importantes de los datos de entrada de manera más eficiente.</li>
+      <li><strong>Decodificación:</strong> El decodificador toma la representación en el espacio latente y aplica transformaciones inversas para reconstruir los datos originales. Las activaciones de las capas de decodificación son, nuevamente, tensores.</li>
+    </ol>
+
+    <p>En resumen, los tensores son la forma en que se representan y manipulan los datos a lo largo de las capas de un autoencoder. La eficacia del autoencoder en aprender representaciones significativas de datos depende en gran medida de cómo estos tensores se transforman durante el proceso de codificación y decodificación.</p>
+    <hr>
+    <h2 class="mb-4">Beneficios de usar Autoencoders para Imputación de Datos</h2>
+
+    <ul>
+      <li><strong>Modelado de Relaciones No Lineales:</strong> Los autoencoders pueden capturar patrones no lineales en los datos, siendo útiles cuando las relaciones entre las variables no son simples.</li>
+      <li><strong>Aprendizaje No Supervisado:</strong> Funcionan sin necesidad de etiquetas, siendo beneficiosos para imputación donde a menudo no se tienen etiquetas para datos faltantes.</li>
+      <li><strong>Flexibilidad y Adaptabilidad:</strong> Los autoencoders se adaptan a la estructura específica de los datos, aprendiendo automáticamente características relevantes sin depender de suposiciones predefinidas.</li>
+      <li><strong>Representación Latente:</strong> Generan representaciones latentes que contienen información valiosa sobre las relaciones entre variables, mejorando la imputación de valores faltantes.</li>
+      <li><strong>Manejo de Datos de Alta Dimensionalidad:</strong> Pueden manejar conjuntos de datos complejos y de alta dimensión, como imágenes o datos tabulares con muchas variables.</li>
+      <li><strong>Capacidad para Imputación Eficiente:</strong> Su estructura permite imputar datos de manera efectiva, especialmente en conjuntos de datos donde otros métodos pueden fallar.</li>
+    </ul>
+  </div>
+  <hr>
 </div>
 
-    <h1>Subir CSV con datos faltantes </h1>
-    <form action="/upload" method="post" enctype="multipart/form-data" class="mt-3">
-        <div class="form-group mb-4">
-            <label class= "mb-4" for="file">Seleccionar archivo CSV:</label> <br>
-            <input type="file" class="form-control-file" id="file" name="file" accept=".csv" />
+
+<div class="container mt-4">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="mb-4">Configuración del Autoencoder para Imputación de Datos</h1>
+  
+        <p><strong>Activadores y Optimizadores Elegidos:</strong></p>
+        <ul>
+          <li><strong>Activador 'relu' en capas ocultas:</strong> ReLU (Rectified Linear Unit) se utiliza para introducir no linealidades y mitigar el problema del desvanecimiento del gradiente.</li>
+          <li><strong>Activador 'relu' en la capa de salida:</strong> Se busca mantener la salida en el rango positivo, evitando valores negativos en la reconstrucción.</li>
+          <li><strong>Optimizador 'adam':</strong> Adam es un optimizador eficiente que combina ventajas de otros métodos y es adecuado para una variedad de conjuntos de datos.</li>
+          <li><strong>Cantidad de épocas y tamaño del lote (batch size):</strong> Se utiliza un valor arbitrario de 50 épocas y un tamaño de lote de 32, que puede requerir ajuste.</li>
+        </ul>
+  
+        <p><strong>Nota:</strong> Estas elecciones se basan en prácticas comunes y pueden requerir ajustes según la naturaleza específica de tus datos.</p>
+      </div>
+  
+      <div class="col-md-6">
+        <div class="container text-center mt-5 pt-5">
+          <h1>Subir CSV con datos faltantes</h1>
+          <form action="/upload" method="post" enctype="multipart/form-data" class="mt-3">
+            <div class="form-group mb-4">
+              <label class="mb-4" for="file">Seleccionar archivo CSV:</label> <br>
+              <input type="file" class="form-control-file" id="file" name="file" accept=".csv" />
+            </div>
+            <button type="submit" class="btn btn-primary">Subir</button>
+          </form>
         </div>
-        <button type="submit" class="btn btn-primary">Subir</button>
-    </form>
+      </div>
+    </div>
+  </div>
+  
 {% endblock %}
 
