@@ -4,6 +4,38 @@
 Subir CSV
 {% endblock %}
 {% block content  %}
+
+<div class="container mt-3 mb-1">
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Volver al Inicio</a>
+</div>
+
+<div class="explicacion-tensores mt-5">
+    <h2>Tensores en Estructuras de Datos</h2>
+    <p>
+        En el contexto de estructuras de datos, un tensor es una generalización multidimensional de matrices 
+        que permite representar datos de múltiples dimensiones. En aprendizaje automático y redes neuronales, 
+        los tensores son fundamentales para representar los datos de entrada, los pesos de las capas de una red, 
+        y las salidas esperadas.
+    </p>
+    <h2>Uso de Autoencoder en Imputación de Datos</h2>
+    <h3>1. Por qué se usó este tipo de red</h3>
+    <p>
+        Se utilizó un autoencoder debido a su capacidad para aprender representaciones compactas de los datos 
+        al pasar por una capa de compresión y luego descomprimirlos en la capa de salida. Esto permite al autoencoder 
+        aprender características importantes y realizar una reconstrucción de los datos de entrada.
+    </p>
+    <h3>2. Por qué esta red neuronal es buena para la imputación de datos positivos normalizados</h3>
+    <p>
+        El autoencoder es adecuado para imputar datos positivos normalizados porque utiliza una función de activación 
+        ReLU (Rectified Linear Unit) que suele funcionar bien con valores positivos y se comporta linealmente para 
+        valores positivos, facilitando la reconstrucción de estos datos.
+    </p>
+    <p>
+        Además, al emplear datos normalizados, se asegura que la red se adapte mejor a la escala y distribución de los 
+        datos, lo que contribuye a obtener mejores resultados en la imputación.
+    </p>
+</div>
+
     <h1>Subir CSV con datos faltantes </h1>
     <form action="/upload" method="post" enctype="multipart/form-data" class="mt-3">
         <div class="form-group mb-4">

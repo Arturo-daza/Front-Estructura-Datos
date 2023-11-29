@@ -7,7 +7,28 @@ Grafo
 {% block content  %}
 
 <div class="container mt-3 mb-1">
-    <a href="{{ url_for('upload_file') }}" class="btn btn-secondary">Volver al Inicio</a>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Volver al Inicio</a>
+</div>
+
+<div class="explicacion-grafos mt-5">
+    <h2>Exploración de Grafos: BFS y DFS</h2>
+    <p>
+        En teoría de grafos, BFS (Breadth-First Search) y DFS (Depth-First Search) son algoritmos de búsqueda utilizados para recorrer 
+        o explorar un grafo.
+    </p>
+    <h3>BFS (Breadth-First Search)</h3>
+    <p>
+        BFS comienza en el nodo origen y explora todos sus vecinos directos antes de avanzar hacia los vecinos de sus vecinos. 
+        Utiliza una estructura de datos cola (queue) para mantener un seguimiento de los nodos por visitar y garantiza que se visite 
+        primero todos los nodos a una distancia d antes de moverse a los nodos a una distancia d + 1.
+    </p>
+    <h3>DFS (Depth-First Search)</h3>
+    <p>
+        DFS, por otro lado, sigue una rama del árbol de búsqueda tanto como sea posible antes de retroceder. Comienza en el nodo origen, 
+        explora lo más profundo posible a lo largo de cada rama antes de retroceder. Utiliza una pila (stack) para llevar un seguimiento 
+        de las ramas por explorar.
+    </p>
+
 </div>
 
     <h1 class="mt-2 text-center">Grafos y el camino más corto</h1>

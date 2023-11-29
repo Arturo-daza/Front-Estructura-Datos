@@ -7,9 +7,10 @@ merge sort
 
 {% block content  %}
 
-<div class="container mt-3 mb-1">
-    <a href="{{ url_for('buscador') }}" class="btn btn-secondary">Buscar texto</a>
-</div>
+<div class="container mt-3 d-flex justify-content-between">
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Volver al Inicio</a>
+    <a href="{{ url_for('buscador') }}"  class="btn btn-primary">Buscar texto</a>
+  </div>
 
     <h1 class="mt-2 text-center">Merge Sort</h1>
 
@@ -22,6 +23,20 @@ merge sort
 
     <h2 class="mt-4">Resultado:</h2>
     <ul id="resultadoLista" class="list-group"></ul>
+
+        <!-- Explicación del algoritmo Merge Sort -->
+        <div class="mt-4">
+            <h2>¿De que trata el algoritmo Merge Sort?</h2>
+            <p>
+                Merge Sort es un algoritmo de ordenamiento eficiente y estable que divide repetidamente una lista en mitades
+                hasta que cada sublista solo tenga un elemento. Luego, combina esas sublistas de manera ordenada y progresiva
+                hasta obtener la lista original ordenada. Utiliza el enfoque "divide y conquista".
+            </p>
+            <p>
+                Su complejidad temporal es O(n log n), lo que lo hace adecuado para listas grandes y se considera uno de los
+                algoritmos de ordenamiento más rápidos y eficientes.
+            </p>
+        </div>
 
     <div class="mt-4"></div>
     <script>

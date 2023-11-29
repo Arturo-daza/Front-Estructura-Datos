@@ -8,7 +8,28 @@ binary tree
 
 {% block content  %}
 <div class="container mt-3 mb-1">
-    <a href="{{ url_for('buscador') }}" class="btn btn-secondary"> Volver al Inicio</a>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary"> Volver al Inicio</a>
+</div>
+
+<div class="explicacion-arbol mt-5">
+    <h2>Árbol Binario en Estructuras de Datos</h2>
+    <p>
+        Un árbol binario es una estructura de datos jerárquica que consta de nodos, donde cada nodo tiene un valor y, opcionalmente, 
+        referencias a otros dos nodos llamados hijos. La característica principal de un árbol binario es que cada nodo puede tener 
+        a lo sumo dos hijos, el hijo izquierdo y el hijo derecho.
+    </p>
+    <p>
+        El nodo en la parte superior del árbol se llama "nodo raíz". Los nodos que no tienen hijos se denominan "nodos hoja". 
+        Los nodos que tienen al menos un hijo se denominan "nodos internos".
+    </p>
+    <h3>Propiedades de un Árbol Binario:</h3>
+    <ul>
+        <li> Cada nodo puede tener como máximo dos hijos, uno izquierdo y uno derecho.</li>
+        <li> Los nodos hijos se denominan subárboles izquierdo y derecho.</li>
+        <li> El orden de inserción en un árbol binario puede afectar su forma y su rendimiento.</li>
+        <li> Los árboles binarios bien organizados permiten operaciones de búsqueda, inserción y eliminación eficientes.</li>
+    </ul>
+
 </div>
 
 
