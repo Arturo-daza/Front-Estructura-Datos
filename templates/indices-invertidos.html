@@ -30,7 +30,7 @@ Buscador
       <div id="resultado"></div>
     </div>
 
-    <div class="container mt-5">
+    <div class="container mt-5" id= "contexto">
       <h2 class="text-center mb-4">¿Qué son los Índices Invertidos?</h2>
       <p>
         Los índices invertidos son estructuras de datos utilizadas en el campo de la
@@ -51,12 +51,38 @@ Buscador
         índices invertidos para encontrar documentos que contienen la palabra ingresada
         por el usuario en una lista de documentos previamente indexados.
       </p>
+
+      <div class="text-center mb-2">
+        <!-- Cambia "ruta-de-tu-imagen.jpg" con la ruta real de tu imagen -->
+    <img src="{{ url_for('static', filename='assets/img/indice invertido.png') }}" alt="Descripción de la imagen" width="400" height="500" class ="text-center">
+        
+      </div>
+
+      <h3 class="text-center mb-4">Creación Indices invertidos python</h3>
+
+      <div class="container mt-4">
+        <pre>
+    cache = {}
+    for index, documento in enumerate(my_documents):
+        words = documento.lower().split()
+        for word in words:
+            if word in cache:
+                cache[word].append(my_documents[index])
+            else:
+                cache[word] = [my_documents[index]]
+        </pre>
+      </div>
     </div>
     <!-- Agregamos los scripts de sweet alert para que se vean vacanes las alertas -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
       function buscarPalabra() {
+        // Obtener referencia al div por su id
+      var miDiv = document.getElementById("contexto");
+
+      // Ocultar el div cambiando la propiedad display a "none"
+      miDiv.style.display = "none";
         let palabra = document.getElementById("palabra").value.toLowerCase();
 
         fetch("http://127.0.0.1:8000/api/indices-invertidos", {
@@ -92,5 +118,6 @@ Buscador
             console.error("Error:", error);
           });
       }
+      
     </script>
   {% endblock %}

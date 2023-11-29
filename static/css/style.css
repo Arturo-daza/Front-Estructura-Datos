@@ -11017,3 +11017,10 @@ button:hover {
     opacity: 1;
   }
 
+  pre {
+    background-color: #000;
+    color: #fff; /* Texto en color blanco para mayor contraste */
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto; /* Agregar desplazamiento horizontal si es necesario */
+  }
